@@ -1,15 +1,84 @@
 <template>
-    <div>footer</div>
+    <div id="footer">
+        <div id="footerBox">
+            <div id="home" @click="clicked(1)" v-bind:class="[propsdata === 1 ? 'clicked' : '', 'category']">
+                <i class="footerIcon fas fa-home" aria-hidden="true"></i>
+                <span class="category-txt">HOME</span>
+            </div>
+            <div id="job" @click="clicked(2)" v-bind:class="[{'clicked' : propsdata === 2}, 'category']">
+                <i class="footerIcon fas fa-hand-holding-usd" aria-hidden="true"></i>
+                <span class="category-txt">JOB</span>
+            </div>
+            <div id="tech" @click="clicked(3)" v-bind:class="[propsdata === 3 ? 'clicked' : '', 'category']">
+                <i class="footerIcon fas fa-code" aria-hidden="true"></i>
+                <span class="category-txt">TECH</span>
+            </div>
+            <div id="apt" @click="clicked(4)" v-bind:class="[propsdata === 4 ? 'clicked' : '', 'category']">
+                <i class="footerIcon fas fa-building" aria-hidden="true"></i>
+                <span class="category-txt">APT</span>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
-    
+    props: ['propsdata'],
+    methods: {
+        clicked(index) {
+            this.$emit('clicked', index);
+        }
+    }
 }
 </script>
 
 <style>
+    .clicked {
+        color: #003 !important;
+    }
 
+    .footerIcon {
+        position: absolute;
+        left: 50%;
+        top: 7px;
+        overflow: hidden;
+        width: 24px;
+        height: 24px;
+        margin: 0 0 0 -12px;
+        font-size: 22px;
+        line-height: 24px;
+        text-align: center;
+    }
+
+    .category {
+        position: relative;
+        display: block;
+        cursor: pointer !important;
+        height: 50px;
+        padding: 32px 0 0;
+        color: #aaa;
+        box-sizing: border-box;
+        float: left;
+        width: 25%;
+    }
+
+    #footer {
+        z-index: 2000;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        -webkit-transition: all .4s ease;
+        transition: all .4s ease;
+    }
+
+    #footerBox {
+        z-index: 20;
+        position: relative;
+        max-width: 700px;
+        margin: 0 auto;
+        background-size: 7px auto;
+    }
 </style>
 
 
