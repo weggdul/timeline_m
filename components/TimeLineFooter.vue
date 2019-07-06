@@ -63,6 +63,7 @@ export default {
     }
 
     #footer {
+        background: #fff;
         z-index: 2000;
         position: fixed;
         left: 0;

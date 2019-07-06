@@ -4,22 +4,25 @@
             <transition-group name="list" class="timeLineList" tag="ul">
                 <li v-for="(timeLineItem, itemId) in propsdata" :key="itemId" class="shadow timeline-list">
                     <div id = "itemInner"> 
-                        <div id = "itemInnerBox">
+                        <div class = "itemInnerBox">
                             <div id = "logo" v-bind:style="{ backgroundImage: 'url(' + timeLineItem.logoUrl + ')' }">
                             </div>
                             <div class="names">                      
-                                <div class="own">
+                                <div id="title" class="own">
                                     {{ timeLineItem.title.trim() }}
                                 </div>
-                                <div class="own">
-                                    Update Date : {{ dateFormatting(timeLineItem.updateAt) }}
+                                <div class="own"> 
+                                    <span>
+                                        Update Date : {{ dateFormatting(timeLineItem.updateAt) }}
+                                    </span>
+                                    <div class="text-more fas fa-caret-down"> 더 보기</div>
                                 </div>
                             </div>
                         </div>
-                        <div id = "itemInnerBox">
-                            <p>
-                            {{ timeLineItem.content }}
-                            </p>
+                        <div class = "itemInnerBox" id="content">
+                            <div class="desc" v-html="timeLineItem.content">
+                                {{ timeLineItem.content }}
+                            </div>                            
                         </div>
                     </div>
                 </li>
@@ -42,9 +45,38 @@ export default {
 </script>
 
 <style>
+    #content {
+        margin-top: -10px;
+    }
+
+    #title {
+        font-weight: bold;
+    }
+
+    .text-more {
+        font-size: 11px;
+        line-height: 23px;
+        margin-left: 85px;
+        cursor: pointer;
+        border: 1px solid rgba(185,185,185,.5);
+        border-radius: 16px;
+        line-height: 30px;
+        width: 55px;
+        text-align: center;
+        color: inherit;
+        box-sizing: border-box;
+    }
+
     .own {
         font-size: 13px;
         line-height: 23px;
+    }
+
+    .desc {
+        padding: 24px 0px 0 1px;
+        font-size: 14px;
+        color: #3a3a3c;
+        line-height: 1.5;
     }
 
     .names {
@@ -102,9 +134,9 @@ export default {
     li {
         text-align: left;
         display: flex;
-        min-height: 104px;
-        height: 104px;
-        line-height: 104px;
+        min-height: 130px;
+        height: 130px;
+        line-height: 130px;
         margin: 0.5rem 0;
         padding: 0 0.9rem;
         background: white;
