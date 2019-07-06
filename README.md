@@ -1,6 +1,6 @@
 # wedul_timeline_m
 
-> wedul timeline description
+> wedul timeline 웹페이지
 
 ## Build Setup
 

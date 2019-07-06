@@ -1,7 +1,7 @@
 <template>
   <div id = "app" class="wrapper">
     <TimeLineHeader v-bind:propsdata="currTitle"></TimeLineHeader>
-    <TimeLineList></TimeLineList>
+    <TimeLineList v-bind:propsdata="timeLineItems"></TimeLineList>
     <TimeLineFooter v-bind:propsdata="clickedIndex" @clicked="clicked"></TimeLineFooter>
   </div>
 </template>
@@ -11,25 +11,66 @@
 import TimeLineFooter from '../components/TimeLineFooter.vue'
 import TimeLineHeader from '../components/TimeLineHeader.vue'
 import TimeLineList from '../components/TimeLineList.vue'
+import axios from 'axios';
+const common = require('../common/common');
+
 const TITLES = {
-  1: '모두보기',
-  2: '채용공고',
-  3: '기술블로그',
-  4: '아파트 분양공고'
+  all: '모두보기',
+  job: '채용공고',
+  tech: '기술블로그',
+  apt: '아파트 분양공고'
 };
 
 export default {
   data() {
     return {
-      clickedIndex: 1,
-      currTitle: TITLES[1]
+      clickedIndex: 'all',
+      currTitle: TITLES['all'],
+      currPage: 1,
+      isLast: false,
+      timeLineItems: []
     }
   },
   methods: {
     clicked(index) {
       this.clickedIndex = index;
       this.currTitle = TITLES[`${this.clickedIndex}`];
+
+      this.currPage = 1;
+      this.isLast = false;
+      this.loadTimeLineItems(index);
+    },
+    loadTimeLineItems(index) {
+      if (this.isLast) return;
+    
+      let url;
+      console.log(index);
+      if (index === 'all') {
+        url = `${common.get('api.host')}`;
+      } else {
+        url = `${common.get('api.host')}/site/${index}`;
+      }
+
+      axios({
+          method: 'GET',
+          url,
+          params : {
+            page: this.currPage
+          }
+      }).then((response) => {
+          if (this.currPage === 1) {
+            this.timeLineItems.length = 0;
+          }
+          this.timeLineItems.push(...response.data.content);
+          this.currPage++;
+          this.isLast = response.data.last;
+      }).catch((ex)=> {
+          console.log("ERR!!!!! : ", ex)
+      });
     }
+  },
+  created() {
+    this.loadTimeLineItems('all');
   },
   components: {
     'TimeLineFooter': TimeLineFooter,

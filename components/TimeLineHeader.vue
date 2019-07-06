@@ -22,8 +22,6 @@ export default {
     width: 100%;
     -webkit-transition: all .2s ease;
     transition: all .2s ease;
-    background: #fff;
-    border-bottom: 1px solid #ebebeb;
   }
 
   #headerBox {
@@ -33,6 +31,7 @@ export default {
     max-width: 700px;
     min-height: 70px;
     margin: 0 auto;
+    border-bottom: 1px solid #ebebeb;
   }
 
   #header h1 {

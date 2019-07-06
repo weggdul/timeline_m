@@ -1,19 +1,19 @@
 <template>
     <div id="footer">
         <div id="footerBox">
-            <div id="home" @click="clicked(1)" v-bind:class="[propsdata === 1 ? 'clicked' : '', 'category']">
+            <div id="home" @click="clicked('all')" v-bind:class="[propsdata === 'all' ? 'clicked' : '', 'category']">
                 <i class="footerIcon fas fa-home" aria-hidden="true"></i>
                 <span class="category-txt">HOME</span>
             </div>
-            <div id="job" @click="clicked(2)" v-bind:class="[{'clicked' : propsdata === 2}, 'category']">
+            <div id="job" @click="clicked('job')" v-bind:class="[{'clicked' : propsdata === 'job'}, 'category']">
                 <i class="footerIcon fas fa-hand-holding-usd" aria-hidden="true"></i>
                 <span class="category-txt">JOB</span>
             </div>
-            <div id="tech" @click="clicked(3)" v-bind:class="[propsdata === 3 ? 'clicked' : '', 'category']">
+            <div id="tech" @click="clicked('tech')" v-bind:class="[propsdata === 'tech' ? 'clicked' : '', 'category']">
                 <i class="footerIcon fas fa-code" aria-hidden="true"></i>
                 <span class="category-txt">TECH</span>
             </div>
-            <div id="apt" @click="clicked(4)" v-bind:class="[propsdata === 4 ? 'clicked' : '', 'category']">
+            <div id="apt" @click="clicked('apt')" v-bind:class="[propsdata === 'apt' ? 'clicked' : '', 'category']">
                 <i class="footerIcon fas fa-building" aria-hidden="true"></i>
                 <span class="category-txt">APT</span>
             </div>
