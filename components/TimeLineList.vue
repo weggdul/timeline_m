@@ -5,7 +5,8 @@
                 <li v-for="(timeLineItem, itemId) in propsdata" :key="itemId" class="shadow timeline-list">
                     <div id = "itemInner"> 
                         <div class = "itemInnerBox">
-                            <div id = "logo" v-bind:style="{ backgroundImage: 'url(' + timeLineItem.logoUrl + ')' }">
+                            <div id="logoBox">
+                                <div id = "logo" v-bind:style="{ backgroundImage: 'url(' + timeLineItem.logoUrl + ')' }"></div>
                             </div>
                             <div class="names">                      
                                 <div id="title" class="own">
@@ -15,7 +16,6 @@
                                     <span>
                                         Update Date : {{ dateFormatting(timeLineItem.updateAt) }}
                                     </span>
-                                    <div class="text-more fas fa-caret-down"> 더 보기</div>
                                 </div>
                             </div>
                         </div>
@@ -53,20 +53,6 @@ export default {
         font-weight: bold;
     }
 
-    .text-more {
-        font-size: 11px;
-        line-height: 23px;
-        margin-left: 85px;
-        cursor: pointer;
-        border: 1px solid rgba(185,185,185,.5);
-        border-radius: 16px;
-        line-height: 30px;
-        width: 55px;
-        text-align: center;
-        color: inherit;
-        box-sizing: border-box;
-    }
-
     .own {
         font-size: 13px;
         line-height: 23px;
@@ -80,27 +66,29 @@ export default {
     }
 
     .names {
-        display: table-cell;
+        display: inline-block;
         vertical-align: middle;
         padding-left: 10px;
+        padding-top: 1px;
         color: #000000;
     }
 
+    #logoBox {
+        display: inline-block;
+    }
+
     #logo {
-        display: table-cell;
-        width: 50px;
-        height: 50px;
+        width: 62px;
+        height: 62px;
         background-size: 80%;
         background-repeat: no-repeat;
         background-position: center center;
         border: 1px #ebebeb solid;
     }
 
-    #itemInnerBox {
-        overflow: hidden;
-        display: inherit;
-        width: 100%;
-        height: 50%;
+    .itemInnerBox {
+        display: flex;
+        margin-top: 9px;
     }
 
     #itemInner {
@@ -134,9 +122,6 @@ export default {
     li {
         text-align: left;
         display: flex;
-        min-height: 130px;
-        height: 130px;
-        line-height: 130px;
         margin: 0.5rem 0;
         padding: 0 0.9rem;
         background: white;
