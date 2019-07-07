@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/main.js',
@@ -79,6 +80,11 @@ module.exports = {
         noInfo: true,
         overlay: true
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './index.html'
+        })
+    ],
     performance: {
         hints: false
     },
