@@ -24,6 +24,9 @@
                                 {{ timeLineItem.content }}
                             </div>                            
                         </div>
+                        <div class="go-page">
+                            <a v-bind:href="timeLineItem.landingUrl">자세히 보기</a>
+                        </div>
                     </div>
                 </li>
             </transition-group>
@@ -45,6 +48,22 @@ export default {
 </script>
 
 <style>
+    .go-page {
+        cursor: pointer;
+        display: -webkit-box;
+        display: flex;
+        height: 36px;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        color: #ff7676;
+        border-top: 1px solid #f1f1f4;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+
     #content {
         margin-top: -10px;
     }
@@ -92,6 +111,7 @@ export default {
     }
 
     #itemInner {
+        width: 100%;
         overflow: hidden;
     }
 
