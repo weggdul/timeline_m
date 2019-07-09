@@ -1,5 +1,5 @@
 {
     "api": {
-        "host": "http://127.0.0.1:8080/timeline/item"
+        "host": "http://wedulnas.synology.me:8080/timeline/item"
     }
 }
