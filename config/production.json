@@ -1,5 +1,5 @@
 {
     "api": {
-        "host": "http://192.168.219.102:8080/timeline/item"
+        "host": "http://127.0.0.1:8080/timeline/item"
     }
 }
