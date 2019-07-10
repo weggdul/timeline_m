@@ -17,8 +17,7 @@ const common = require('../common/common');
 const TITLES = {
   all: '모두보기',
   job: '채용공고',
-  tech: '기술블로그',
-  apt: '아파트 분양공고'
+  tech: '기술블로그'
 };
 
 export default {

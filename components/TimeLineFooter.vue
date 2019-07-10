@@ -13,10 +13,6 @@
                 <i class="footerIcon fas fa-code" aria-hidden="true"></i>
                 <span class="category-txt">TECH</span>
             </div>
-            <div id="apt" @click="clicked('apt')" v-bind:class="[propsdata === 'apt' ? 'clicked' : '', 'category']">
-                <i class="footerIcon fas fa-building" aria-hidden="true"></i>
-                <span class="category-txt">APT</span>
-            </div>
         </div>
     </div>
 </template>
@@ -59,7 +55,7 @@ export default {
         color: #aaa;
         box-sizing: border-box;
         float: left;
-        width: 25%;
+        width: 33%;
     }
 
     #footer {
