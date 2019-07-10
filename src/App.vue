@@ -33,9 +33,9 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', e => {
-        // console.log(window.scrollY);
-        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= document.documentElement.offsetHeight - 10;
+        const el = document.scrollingElement || document.documentElement;
         
+        let bottomOfWindow = el.scrollTop + window.innerHeight >= document.documentElement.offsetHeight - 10;
         if (bottomOfWindow) {
             this.loadTimeLineItems(this.clickedIndex);
         }
