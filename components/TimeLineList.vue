@@ -1,8 +1,8 @@
 <template>
-    <div id="items">
+    <div id="items" >
         <section>
-            <transition-group name="list" class="timeLineList" tag="ul">
-                <li v-for="(timeLineItem, itemId) in propsdata" :key="itemId" class="shadow timeline-list">
+            <transition-group name="list" id="infinite-list" class="timeLineList list-group" tag="ul">
+                <li v-for="(timeLineItem, itemId) in propsdata" :key="itemId" class="shadow timeline-list list-group-item">
                     <div id = "itemInner"> 
                         <div class = "itemInnerBox">
                             <div id="logoBox">
@@ -25,7 +25,7 @@
                             </div>                            
                         </div>
                         <div class="go-page">
-                            <a v-bind:href="timeLineItem.landingUrl">자세히 보기</a>
+                            <a class="go-link" v-bind:href="timeLineItem.landingUrl">자세히 보기</a>
                         </div>
                     </div>
                 </li>
@@ -48,6 +48,7 @@ export default {
 </script>
 
 <style>
+
     .go-page {
         cursor: pointer;
         display: -webkit-box;

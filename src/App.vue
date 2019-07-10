@@ -31,6 +31,19 @@ export default {
       timeLineItems: []
     }
   },
+  mounted() {
+    window.addEventListener('scroll', e => {
+        // console.log(window.scrollY);
+        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= document.documentElement.offsetHeight - 10;
+        
+        if (bottomOfWindow) {
+            this.loadTimeLineItems(this.clickedIndex);
+        }
+    });
+
+    // Initially load some items.
+    this.loadTimeLineItems(this.clickedIndex);
+  },
   methods: {
     clicked(index) {
       this.clickedIndex = index;
@@ -42,9 +55,9 @@ export default {
     },
     loadTimeLineItems(index) {
       if (this.isLast) return;
+      if (!index) index = this.clickedIndex;
     
       let url;
-      console.log(index);
       if (index === 'all') {
         url = `${common.get('api.host')}`;
       } else {
@@ -69,9 +82,6 @@ export default {
       });
     }
   },
-  created() {
-    this.loadTimeLineItems('all');
-  },
   components: {
     'TimeLineFooter': TimeLineFooter,
     'TimeLineHeader': TimeLineHeader,
@@ -81,6 +91,11 @@ export default {
 </script>
 
 <style>
+   .go-link { 
+      color: red !important; 
+      text-decoration: none !important;
+    }
+
     .wrapper {
       width: 100%;
       max-width: 700px;
