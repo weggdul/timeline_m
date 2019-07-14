@@ -55,7 +55,7 @@ export default {
 
   #query {
     height: 50px;
-    margin-top: -10px;
+    margin-top: -20px;
     border-radius: 20px;
   }
 

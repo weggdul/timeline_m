@@ -104,6 +104,7 @@ export default {
         background-repeat: no-repeat;
         background-position: center center;
         border: 1px #ebebeb solid;
+        background-color: #eee;
     }
 
     .itemInnerBox {
