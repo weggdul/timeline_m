@@ -119,7 +119,7 @@ export default {
     #items {
         overflow: scroll;
         min-height: 100vh;
-        padding: 70px 0 51px;
+        padding: 80px 0 51px;
         background: #fff;
         box-sizing: border-box;
     }

@@ -1,6 +1,6 @@
 <template>
   <div id = "app" class="wrapper">
-    <TimeLineHeader v-bind:propsdata="currTitle"></TimeLineHeader>
+    <TimeLineHeader v-bind:propsdata="searchQuery" v-on:changeInput="changeInput"></TimeLineHeader>
     <TimeLineList v-bind:propsdata="timeLineItems"></TimeLineList>
     <TimeLineFooter v-bind:propsdata="clickedIndex" @clicked="clicked"></TimeLineFooter>
   </div>
@@ -23,10 +23,12 @@ const TITLES = {
 export default {
   data() {
     return {
+      searchQuery: '',
       clickedIndex: 'all',
       currTitle: TITLES['all'],
       currPage: 1,
       isLast: false,
+      loading: false,
       timeLineItems: []
     }
   },
@@ -44,6 +46,13 @@ export default {
     this.loadTimeLineItems(this.clickedIndex);
   },
   methods: {
+    changeInput(searchQuery) {
+      this.searchQuery = searchQuery;
+      this.currPage = 1;
+      this.isLast = false;
+      window.scrollTo(0,0);
+      this.loadTimeLineItems(this.clickedIndex);
+    },
     clicked(index) {
       this.clickedIndex = index;
       this.currTitle = TITLES[`${this.clickedIndex}`];
@@ -54,7 +63,13 @@ export default {
     },
     loadTimeLineItems(index) {
       if (this.isLast) return;
+      if (this.loading) return;
       if (!index) index = this.clickedIndex;
+      const params = {
+        page: this.currPage
+      };
+      if (this.searchQuery) params.searchQuery = this.searchQuery;
+      this.loading = true;
     
       let url;
       if (index === 'all') {
@@ -66,9 +81,7 @@ export default {
       axios({
           method: 'GET',
           url,
-          params : {
-            page: this.currPage
-          }
+          params
       }).then((response) => {
           if (this.currPage === 1) {
             this.timeLineItems.length = 0;
@@ -76,8 +89,10 @@ export default {
           this.timeLineItems.push(...response.data.content);
           this.currPage++;
           this.isLast = response.data.last;
+          this.loading = false;
       }).catch((ex)=> {
-          console.log("ERR!!!!! : ", ex)
+          console.log("ERR!!!!! : ", ex);
+          this.loading = false;
       });
     }
   },
