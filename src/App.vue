@@ -59,6 +59,7 @@ export default {
 
       this.currPage = 1;
       this.isLast = false;
+      window.scrollTo(0,0);
       this.loadTimeLineItems(index);
     },
     loadTimeLineItems(index) {
