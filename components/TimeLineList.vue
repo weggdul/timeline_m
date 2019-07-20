@@ -24,8 +24,8 @@
                                 {{ timeLineItem.content }}
                             </div>                            
                         </div>
-                        <div class="go-page">
-                            <a class="go-link" v-bind:href="timeLineItem.landingUrl">자세히 보기</a>
+                        <div class="go-page" @click="clickDetail(timeLineItem.landingUrl)">
+                            <a class="go-link">자세히 보기</a>
                         </div>
                     </div>
                 </li>
@@ -42,6 +42,9 @@ export default {
     methods: {
         dateFormatting(input) {
             return dateformat(new Date(input), 'yyyy.mm.dd');
+        },
+        clickDetail(url) {
+            window.location.href = url;
         }
     }
 }
@@ -83,8 +86,52 @@ export default {
         font-size: 14px;
         color: #3a3a3c;
         line-height: 1.5;
+        height: 170px;
+        overflow: hidden;
     }
 
+    .desc img {
+        height: 150px;
+        width: 100%;
+        padding: 3px 0px 3px 0px;
+    }
+
+    blockquote, q{
+        margin:0;
+        padding:0;
+        border:0;
+        outline:0;
+        font-size:100%;
+        vertical-align:baseline;
+        background:transparent;
+        quotes:none;
+    }
+
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content:'';
+        content:none;
+    }
+
+    .desc a {
+        pointer-events: none;
+        cursor: default;
+        text-decoration: none;
+        color: black;
+    }
+
+    .desc h1, 
+    .desc h2,
+    .desc h3 {    
+        font-size: 14px;
+        padding: 12px 0px 3px 0px;
+    }
+
+    ol {
+        padding-inline-start: 13px;
+        padding-top: 14px;
+    }
+    
     .names {
         display: inline-block;
         vertical-align: middle;
@@ -104,7 +151,6 @@ export default {
         background-repeat: no-repeat;
         background-position: center center;
         border: 1px #ebebeb solid;
-        background-color: #eee;
     }
 
     .itemInnerBox {
@@ -114,7 +160,6 @@ export default {
 
     #itemInner {
         width: 100%;
-        overflow: hidden;
     }
 
     #items {
@@ -134,14 +179,14 @@ export default {
         transform: translate(30px);
     }
 
-    ul {
+    .timeLineList {
         list-style-type: none;
         padding-left: 0px;
         margin-top: 0;
         text-align: left;
     }
 
-    li {
+    .timeline-list {
         text-align: left;
         display: flex;
         margin: 0.5rem 0;
