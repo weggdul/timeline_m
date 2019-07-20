@@ -34,7 +34,7 @@ export default {
   }
 
   .search-input {
-    width: 69%;
+    width: 85%;
     height: 32px;
     font-size: 14px;
     line-height: 100%;
@@ -54,8 +54,8 @@ export default {
   }
 
   #query {
-    height: 50px;
-    margin-top: -20px;
+    height: 55px;
+    margin-top: -15px;
     border-radius: 20px;
   }
 
