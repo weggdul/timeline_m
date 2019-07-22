@@ -14,7 +14,7 @@
                                 </div>
                                 <div class="own"> 
                                     <span>
-                                        Update Date : {{ dateFormatting(timeLineItem.updateAt) }}
+                                        등록시간 : {{ timeLineItem.publishedAt && 0 !== timeLineItem.publishedAt ? dateFormatting(timeLineItem.publishedAt) : dateFormatting(timeLineItem.updateAt) }}
                                     </span>
                                 </div>
                             </div>
