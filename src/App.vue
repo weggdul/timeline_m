@@ -1,6 +1,6 @@
 <template>
   <div id = "app" class="wrapper">
-    <TimeLineHeader v-bind:propsdata="searchQuery" v-on:changeInput="changeInput"></TimeLineHeader>
+    <TimeLineHeader v-bind:propsdata="searchQuery" v-on:search="search" v-on:inputQuery="inputQuery"></TimeLineHeader>
     <TimeLineList v-bind:propsdata="timeLineItems"></TimeLineList>
     <TimeLineFooter v-bind:propsdata="clickedIndex" @clicked="clicked"></TimeLineFooter>
   </div>
@@ -12,7 +12,7 @@ import TimeLineFooter from '../components/TimeLineFooter.vue'
 import TimeLineHeader from '../components/TimeLineHeader.vue'
 import TimeLineList from '../components/TimeLineList.vue'
 import axios from 'axios';
-const common = require('../common/common');
+const { get, today } = require('../common/common');
 
 const TITLES = {
   all: '모두보기',
@@ -46,15 +46,18 @@ export default {
     this.loadTimeLineItems(this.clickedIndex);
   },
   methods: {
-    changeInput(searchQuery) {
-      this.searchQuery = searchQuery;
+    search() {
       this.currPage = 1;
       this.isLast = false;
       window.scrollTo(0,0);
       this.loadTimeLineItems(this.clickedIndex);
     },
+    inputQuery(searchQuery) {
+      this.searchQuery = searchQuery;
+    },
     clicked(index) {
       this.clickedIndex = index;
+      this.searchQuery = '';
       this.currTitle = TITLES[`${this.clickedIndex}`];
 
       this.currPage = 1;
@@ -67,16 +70,17 @@ export default {
       if (this.loading) return;
       if (!index) index = this.clickedIndex;
       const params = {
-        page: this.currPage
+        page: this.currPage,
+        searchDate: today()
       };
       if (this.searchQuery) params.searchQuery = this.searchQuery;
       this.loading = true;
     
       let url;
       if (index === 'all') {
-        url = `${common.get('api.host')}`;
+        url = `${get('api.host')}`;
       } else {
-        url = `${common.get('api.host')}/site/${index}`;
+        url = `${get('api.host')}/site/${index}`;
       }
 
       axios({

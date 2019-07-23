@@ -1,8 +1,10 @@
+import dateformat from 'dateformat'
+
 const getProfile = () => {
     return process.env.NODE_ENV ? process.env.NODE_ENV : 'develop';
 };
 
-exports.get = (param) => {
+const get = (param) => {
     const config = require(`../config/${getProfile()}`);
     const keys = param.split('.');
     let curr = config;
@@ -16,3 +18,9 @@ exports.get = (param) => {
 
     return curr;
 };
+
+const today = () => {
+    return dateformat(new Date(), 'yyyy-mm-dd');
+};
+
+export {get, today };

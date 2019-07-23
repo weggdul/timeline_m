@@ -4,8 +4,8 @@
             <h1>모든 정보를 한번에 위들 타임라인</h1>
             <div id="query">
               <div class="search">
-                <input v-model="searchQuery" v-on:keyup.enter="changeInput" class="search-input" placeholder="내용을 입력하세요."/>
-                <div @click="changeInput" class="searchIcon"><i class="fas fa-search"></i></div>
+                <input v-model="searchQueryInput" v-on:keyup.enter="search" class="search-input" placeholder="내용을 입력하세요."/>
+                <div @click="search" class="searchIcon"><i class="fas fa-search"></i></div>
               </div>
             </div>
         </div>
@@ -21,8 +21,18 @@ export default {
       }
     },
     methods: {
-      changeInput: function() {
-        this.$emit('changeInput', this.searchQuery);
+      search: function() {
+        this.$emit('search');
+      }
+    },
+    computed: {
+      searchQueryInput: {
+        get: function(){
+            return this.propsdata;
+        },
+        set: function(newValue){
+            this.$emit('inputQuery', newValue);
+        }   
       }
     }
 }
