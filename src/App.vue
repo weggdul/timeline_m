@@ -70,9 +70,13 @@ export default {
       if (this.loading) return;
       if (!index) index = this.clickedIndex;
       const params = {
-        page: this.currPage,
-        searchDate: today()
+        page: this.currPage
       };
+      
+      if (index === 'all' || index === 'job') {
+        params.searchDate = today();
+      }
+
       if (this.searchQuery) params.searchQuery = this.searchQuery;
       this.loading = true;
     
