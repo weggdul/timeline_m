@@ -75,6 +75,8 @@ export default {
       
       if (index === 'all' || index === 'job') {
         params.searchDate = today();
+      } else {
+        delete params.searchDate;
       }
 
       if (this.searchQuery) params.searchQuery = this.searchQuery;
