@@ -1,5 +1,5 @@
 {
     "api": {
-        "host": "http://wedul.space:8080/timeline/item"
+        "host": "http://wedul.space:8081/timeline/item"
     }
 }
