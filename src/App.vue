@@ -26,7 +26,7 @@ export default {
       searchQuery: '',
       clickedIndex: 'all',
       currTitle: TITLES['all'],
-      currPage: 1,
+      currPage: 0,
       isLast: false,
       loading: false,
       timeLineItems: []
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     search() {
-      this.currPage = 1;
+      this.currPage = 0;
       this.isLast = false;
       window.scrollTo(0,0);
       this.loadTimeLineItems(this.clickedIndex);
@@ -60,7 +60,7 @@ export default {
       this.searchQuery = '';
       this.currTitle = TITLES[`${this.clickedIndex}`];
 
-      this.currPage = 1;
+      this.currPage = 0;
       this.isLast = false;
       window.scrollTo(0,0);
       this.loadTimeLineItems(index);
@@ -94,12 +94,12 @@ export default {
           url,
           params
       }).then((response) => {
-          if (this.currPage === 1) {
+          if (this.currPage === 0) {
             this.timeLineItems.length = 0;
           }
           this.timeLineItems.push(...response.data.content);
-          this.currPage++;
-          this.isLast = response.data.last;
+          this.currPage = response.data.page;
+          this.isLast = response.data.isLast;
           this.loading = false;
       }).catch((ex)=> {
           console.log("ERR!!!!! : ", ex);
